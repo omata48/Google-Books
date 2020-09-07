@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import Saved from './pages/Saved';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Redirect to='/' />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
