@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 class Nav extends Component {
     state = {
@@ -63,6 +64,16 @@ class Nav extends Component {
                             >
                                 Saved
                             </Link>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Styles
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <button className="dropdown-item btn-secondary" >Base</button>
+                            <button className="dropdown-item btn-primary" >Blue</button>
+                            <button className="dropdown-item btn-danger" >Leather</button>
+                            </div>
                         </li>
                     </ul>
                 </div>

@@ -3,12 +3,14 @@ import Jumbotron from "../components/Jumbotron";
 import GoogleBooks from "../components/GoogleBooks";
 import API from "../utils/API";
 import Search from "../components/Search";
+import "./style.css";
 
 class Home extends Component {
   state = {
     books: [],
     q: "",
     message: "Search for a book above!",
+    theme: "base"
   };
 
   handleInputChange = (event) => {

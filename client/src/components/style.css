@@ -1,0 +1,16 @@
+.btn-danger:hover {
+  background-color: tan;
+  color: black;
+}
+.btn-danger:active{
+  background-color: tan;
+  color: white;
+  border: 1px;
+  border-color: antiquewhite;
+}
+.btn-danger:active:hover{
+  background-color: tan;
+  color: white;
+  border: 1px;
+  border-color: antiquewhite;
+}
