@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "./theme-context";
+
 
 function Search(props) {
+  const theme = useContext(ThemeContext)
+  
   const { q, handleInputChange, handleFormSubmit } = props;
   return (
     <div className="card mt-4">
-      <div className="card-header">
+      <div className="card-header" style={theme}>
         <h3>
           <i className={"fa fa-far fa-book"} /> Book Search
         </h3>
@@ -29,6 +33,7 @@ function Search(props) {
               onClick={handleFormSubmit}
               type="submit"
               className="btn btn-lg float-right"
+              style={theme}
             >
               Search
             </button>

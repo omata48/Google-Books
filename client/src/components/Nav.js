@@ -1,85 +1,79 @@
-import React, { Component } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import ThemeContext from "./theme-context";
 import "./style.css";
 
-class Nav extends Component {
-    state = {
-        open: false,
-    };
+function Nav({toggleTheme}) {
+    const theme = useContext(ThemeContext);
+    const [state, setState] = useState({open: false});
 
-    updateScreen = () => {
+    const updateScreen = () => {
         const newState = {};
 
-        if (this.state.open) {
+        if (state.open) {
             newState.open = false;
         }
-        this.setState(newState);
+        setState(newState);
     };
 
-    toggleNav = () => {
-        this.setState({ open: !this.state.open });
+    const toggleNav = () => {
+        setState({ open: !state.open });
     };
 
-    componentDidMount() {
-        window.addEventListener('resize', this.updateScreen)
-    }
+    useEffect(() =>{
+        window.addEventListener('resize', updateScreen)
+    },[window]);
 
-    componentWillUnmount() {
-        window.addEventListener('resize', this.updateScreen)
-    }
-
-    render() {
-        return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
-                <Link className="navbar-brand" to="/">
-                    Google Books
-                </Link>
-                <button
-                    onClick={this.toggleNav}
-                    className="navbar-toggler"
-                    data-toggle="collapse"
-                    data-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                <span className="navbar-toggler-icon" />
-                </button>
-                <div className={`${this.state.open ? "" : "collapse "}navbar-collapse`} id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <Link
-                                onClick={this.toggleNav}
-                                className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
-                                to="/"
-                            >
-                                Search
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                onClick={this.toggleNav}
-                                className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}
-                                to="/saved"
-                            >
-                                Saved
-                            </Link>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Styles
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <button className="dropdown-item btn-secondary" >Base</button>
-                            <button className="dropdown-item btn-primary" >Blue</button>
-                            <button className="dropdown-item btn-danger" >Leather</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        );
-    }
+    return (
+        <nav style={theme} className="navbar navbar-expand-lg navbar-dark mb-2">
+            <Link className="navbar-brand" to="/">
+                Google Books
+            </Link>
+            <button
+                onClick={toggleNav}
+                className="navbar-toggler"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+            <span className="navbar-toggler-icon" />
+            </button>
+            <div className={`${state.open ? "" : "collapse "}navbar-collapse`} id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item">
+                        <Link
+                            onClick={toggleNav}
+                            className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
+                            to="/"
+                        >
+                            Search
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                            onClick={toggleNav}
+                            className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}
+                            to="/saved"
+                        >
+                            Saved
+                        </Link>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Styles
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <button onClick={toggleTheme} className="dropdown-item btn-secondary" value="base" id="base">Base</button>
+                        <button onClick={toggleTheme} className="dropdown-item btn-primary" value="blue" id="blue">Blue</button>
+                        <button onClick={toggleTheme} className="dropdown-item btn-danger" value="tan" id="tan">Leather</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    );
 }
 
 export default Nav;
