@@ -1,14 +1,14 @@
-.btn-danger:hover {
+#tan:hover {
   background-color: tan;
   color: black;
 }
-.btn-danger:active{
+#tan:active{
   background-color: tan;
   color: white;
   border: 1px;
   border-color: antiquewhite;
 }
-.btn-danger:active:hover{
+#tan:focus{
   background-color: tan;
   color: white;
   border: 1px;
